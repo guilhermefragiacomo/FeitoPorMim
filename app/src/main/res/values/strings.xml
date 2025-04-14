@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">FeitoPorMim</string>
+    <string name="welcome_msg">Bem Vindo! começe cadastrando uma nova conta ou utilizando uma já existente.</string>
+    <string name="login">Entrar</string>
+    <string name="signin">Cadastrar</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="dont_have_account">Não possui uma conta? Cadastre-se.</string>
+    <string name="confirm_password">Cofirme sua senha</string>
+    <string name="already_have_account">Já possui uma conta? Entrar.</string>
+    <string name="change_photo">Alterar Foto</string>
+    <string name="username">Nome de usuário</string>
+    <string name="name">Nome completo</string>
+    <string name="save_changes">Salvar Alterações</string>
+    <string name="logout">Sair</string>
+</resources>
