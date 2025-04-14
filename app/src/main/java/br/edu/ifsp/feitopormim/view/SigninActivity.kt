@@ -1,15 +1,9 @@
-package br.edu.ifsp.feitopormim
+package br.edu.ifsp.feitopormim.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import br.edu.ifsp.feitopormim.databinding.ActivityLoginBinding
 import br.edu.ifsp.feitopormim.databinding.ActivitySigninBinding
 import com.google.firebase.auth.FirebaseAuth
 

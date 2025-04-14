@@ -1,4 +1,4 @@
-package br.edu.ifsp.feitopormim
+package br.edu.ifsp.feitopormim.util
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

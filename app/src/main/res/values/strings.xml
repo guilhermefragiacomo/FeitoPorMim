@@ -13,4 +13,8 @@
     <string name="name">Nome completo</string>
     <string name="save_changes">Salvar Alterações</string>
     <string name="logout">Sair</string>
+    <string name="description">Descrição</string>
+    <string name="feed">Carregar feed</string>
+    <string name="create_post">Criar Post</string>
+    <string name="back">Voltar</string>
 </resources>
