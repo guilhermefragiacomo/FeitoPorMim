@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/grey"
     tools:context=".view.HomeActivity">
 
     <ImageView
         android:id="@+id/ivPostImage"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:background="@drawable/empty_profile"
+        android:background="@drawable/ic_profile"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,6 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/change_photo"
+        android:backgroundTint="@color/orange"
         app:layout_constraintTop_toBottomOf="@id/ivPostImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,18 +35,31 @@
         android:layout_height="wrap_content"
         android:hint="@string/description"
         android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:padding="12dp"
         app:layout_constraintTop_toBottomOf="@id/btnChangePhoto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="20dp"/>
 
+    <CheckBox
+        android:id="@+id/cbLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_location"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/etDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <Button
         android:id="@+id/btnCreatePost"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/create_post"
-        app:layout_constraintTop_toBottomOf="@id/etDescription"
+        android:backgroundTint="@color/orange"
+        app:layout_constraintTop_toBottomOf="@id/cbLocation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="20dp"/>
@@ -55,6 +69,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/back"
+        android:backgroundTint="@color/orange"
         app:layout_constraintTop_toBottomOf="@id/btnCreatePost"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

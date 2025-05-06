@@ -17,4 +17,5 @@
     <string name="feed">Carregar feed</string>
     <string name="create_post">Criar Post</string>
     <string name="back">Voltar</string>
+    <string name="show_location">Permitir Localização</string>
 </resources>

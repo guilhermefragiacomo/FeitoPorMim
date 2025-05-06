@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/grey"
     tools:context=".view.MainActivity">
 
     <ImageView
@@ -12,24 +12,12 @@
         android:layout_width="wrap_content"
         android:layout_height="160dp"
         android:background="@drawable/logo"
+        android:backgroundTint="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         />
-
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_msg"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/ivAppLogo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="16dp"/>
 
     <Button
         android:id="@+id/btnSignUp"
@@ -37,16 +25,18 @@
         android:layout_height="wrap_content"
         android:text="@string/signin"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/tvWelcome"
+        android:backgroundTint="@color/orange"
+        app:layout_constraintTop_toBottomOf="@id/ivAppLogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp" />
 
     <Button
         android:id="@+id/btnLogIn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/login"
+        android:backgroundTint="@color/orange"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/btnSignUp"
         app:layout_constraintStart_toStartOf="parent"

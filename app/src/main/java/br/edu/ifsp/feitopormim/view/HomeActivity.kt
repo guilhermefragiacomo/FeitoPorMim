@@ -2,6 +2,7 @@ package br.edu.ifsp.feitopormim.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.ifsp.feitopormim.databinding.ActivityHomeBinding
@@ -32,22 +33,15 @@ class HomeActivity : AppCompatActivity() {
                     val bitmap = Base64Converter.stringToBitmap(imageString)
                     binding.ivProfileLogo.setImageBitmap(bitmap)
                     binding.etUserName.text = document.data!!["username"].toString()
-                    binding.etName.text =
-                        document.data!!["full_name"].toString()
                 }
             }
 
-        binding.btnLogout.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+        binding.ivProfileLogo.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
             finish()
         }
 
-        binding.btnPosts.setOnClickListener {
-            startActivity(Intent(this, PostActivity::class.java))
-            finish()
-        }
-
-        binding.btnPosts.setOnClickListener {
+        fun loadFeed() {
             val db = Firebase.firestore
             db.collection("posts").get()
                 .addOnCompleteListener { task ->
@@ -58,18 +52,39 @@ class HomeActivity : AppCompatActivity() {
                             val imageString = document.data!!["imageString"].toString()
                             val bitmap = Base64Converter.stringToBitmap(imageString)
                             val description = document.data!!["description"].toString()
-                            posts.add(Post(description, bitmap))
+                            val email = document.data!!["useremail"].toString()
+                            val location = document.data!!["location"].toString()
+                            Log.e("Sistema", email)
+                            db.collection("users").document(email).get()
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful){
+                                        val userDocument = task.result
+                                        val userImageString = userDocument.data!!["user_image"].toString()
+                                        val userBitmap = Base64Converter.stringToBitmap(userImageString)
+                                        val username = userDocument.data!!["username"].toString()
+                                        Log.e("Sistema", username)
+
+                                        posts.add(Post(description, bitmap, userBitmap, username, location))
+
+                                        val adapter = PostAdapter(posts.toTypedArray())
+                                        binding.postsReciclerView.layoutManager = LinearLayoutManager(this)
+                                        binding.postsReciclerView.adapter = adapter
+                                    }
+                                }
                         }
-                        val adapter = PostAdapter(posts.toTypedArray())
-                        binding.postsReciclerView.layoutManager = LinearLayoutManager(this)
-                        binding.postsReciclerView.adapter = adapter
                     }
                 }
+        }
+
+        binding.btnPosts.setOnClickListener {
+            loadFeed()
         }
 
         binding.btnCreatePost.setOnClickListener {
             startActivity(Intent(this, CreatePostActivity::class.java))
             finish()
         }
+
+        loadFeed()
     }
 }
