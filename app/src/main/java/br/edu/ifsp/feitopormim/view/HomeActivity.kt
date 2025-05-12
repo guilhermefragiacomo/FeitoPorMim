@@ -23,6 +23,7 @@ class HomeActivity : AppCompatActivity() {
     private val pageSize = 5
 
     private val pageCursors = mutableListOf<Pair<DocumentSnapshot?, DocumentSnapshot?>>()
+    private val shownPostIds = mutableSetOf<String>()
     private var currentPageIndex = 0
 
     private var searchField = "location"
@@ -52,8 +53,6 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, ProfileActivity::class.java))
             finish()
         }
-
-
 
         binding.btnNextPage.setOnClickListener {
             loadFeed(act = 1, searchField, searchFilter)
@@ -108,9 +107,24 @@ class HomeActivity : AppCompatActivity() {
         }
 
         query.get().addOnSuccessListener { result ->
-            if (result.isEmpty) return@addOnSuccessListener
+            var documents = result.documents
+            val newDocuments = documents.filter { !shownPostIds.contains(it.id) }
 
-            val documents = result.documents
+            if (newDocuments.isEmpty()) {
+                Log.e("System-feitoPorMim", "entrei1")
+                if (act == 1) {
+                    Log.e("System-feitoPorMim", "entrei2")
+                    if (currentPageIndex == pageCursors.size -1) {
+                        Log.e("System-feitoPorMim", "foi")
+                        binding.btnNextPage.visibility = View.GONE
+                        return@addOnSuccessListener
+                    }
+                }
+            }
+
+            newDocuments.forEach { shownPostIds.add(it.id) }
+            Log.e("System-feitoPorMim", shownPostIds.toString())
+
             val posts = ArrayList<Post>()
 
             var loadedCount = 0
@@ -136,7 +150,7 @@ class HomeActivity : AppCompatActivity() {
                         binding.postsReciclerView.adapter = adapter
 
                         if (act == 1) {
-                            if (currentPageIndex == pageCursors.size) {
+                            if (currentPageIndex == pageCursors.size-1) {
                                 val firstDoc = documents.firstOrNull()
                                 val lastDoc = documents.lastOrNull()
                                 pageCursors.add(Pair(firstDoc, lastDoc))
@@ -152,10 +166,10 @@ class HomeActivity : AppCompatActivity() {
                             pageCursors.add(Pair(firstDoc, lastDoc))
                         }
 
-                        binding.btnNextPage.visibility = if (documents.size < 5) View.GONE else View.VISIBLE
+                        binding.btnNextPage.visibility = if (documents.size < pageSize) View.GONE else View.VISIBLE
                         binding.btnBackPage.visibility = if (currentPageIndex > 0) View.VISIBLE else View.GONE
 
-                        Log.e("System-feitoPorMim", currentPageIndex.toString() + " " + pageCursors.size.toString())
+                        Log.e("System-feitoPorMim", currentPageIndex.toString() + " " + pageCursors.size.toString() + " " + documents.size)
                     }
                 }
             }

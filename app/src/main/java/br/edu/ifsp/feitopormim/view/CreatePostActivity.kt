@@ -15,6 +15,7 @@ import br.edu.ifsp.feitopormim.util.Base64Converter
 import br.edu.ifsp.feitopormim.util.LocalizacaoHelper
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.firestore
 import java.util.UUID
 
@@ -115,7 +116,8 @@ class CreatePostActivity : AppCompatActivity(), LocalizacaoHelper.Callback {
                     "description" to description,
                     "imageString" to imageString,
                     "useremail" to email,
-                    "location" to location
+                    "location" to location,
+                    "timestamp" to FieldValue.serverTimestamp()
                 )
 
                 val db = Firebase.firestore
